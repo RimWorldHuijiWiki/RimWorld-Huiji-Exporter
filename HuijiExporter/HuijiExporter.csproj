@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDE6C54F-F9DC-46D9-B5AE-E4D2EF599658}</ProjectGuid>
+    <ProjectGuid>{D1D1031B-9B5B-4AFB-901D-866935D95CFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RimWorld_Huiji_Exporter</RootNamespace>
-    <AssemblyName>RimWorld-Huiji-Exporter</AssemblyName>
+    <RootNamespace>HuijiExporter</RootNamespace>
+    <AssemblyName>HuijiExporter</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -30,15 +28,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\SteamLibrary\steamapps\common\RimWorld\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net20\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -54,24 +50,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
-    <Compile Include="ExDef\Ex_Def.cs" />
+    <Compile Include="ExDefs\Ex_BiomeDef.cs" />
+    <Compile Include="ExDefs\Ex_Def.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_HuijiExporter\Assemblies\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="_HuijiExporter\About\About.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="_HuijiExporter\Assemblies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>:: echo ======== 删除旧文件 ========
+    <PostBuildEvent>REM  Delete old files
 rd /S /Q "D:\SteamLibrary\steamapps\common\RimWorld\Mods\_HuijiExporter"
-:: echo ======== 复制新文件 ========
+REM Copy new files
 xcopy $(ProjectDir)\_HuijiExporter "D:\SteamLibrary\steamapps\common\RimWorld\Mods\_HuijiExporter" /E /I /Q /Y
-:: echo ======== 完成 ========</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
