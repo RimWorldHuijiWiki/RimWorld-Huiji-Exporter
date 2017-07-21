@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RimWorld_Huiji_Exporter
 {
-    public class Class1
+    public class Main
     {
     }
 }
