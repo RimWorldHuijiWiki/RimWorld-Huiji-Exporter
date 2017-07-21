@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>_HuijiExporter</name>
+  <author>duduluu</author>
+  <url>https://github.com/RimWorldHuijiWiki/RimWorld-Huiji-Exporter</url>
+	<targetVersion>0.17.1557</targetVersion>
+  <description>RimWorld Huiji Wiki 数据导出器</description>
+</ModMetaData>
