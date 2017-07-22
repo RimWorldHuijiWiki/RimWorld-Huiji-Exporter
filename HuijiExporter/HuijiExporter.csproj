@@ -14,9 +14,9 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>embedded</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>%40HuijiExporter\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>_HuijiExporter\Assemblies\</OutputPath>
+    <OutputPath>%40HuijiExporter\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,17 +55,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="_HuijiExporter\About\About.xml" />
+    <Content Include="%40HuijiExporter\About\About.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="_HuijiExporter\Assemblies\" />
+    <Folder Include="%40HuijiExporter\Assemblies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>REM  Delete old files
-rd /S /Q "D:\SteamLibrary\steamapps\common\RimWorld\Mods\_HuijiExporter"
+rd /S /Q "D:\SteamLibrary\steamapps\common\RimWorld\Mods\@HuijiExporter"
 REM Copy new files
-xcopy $(ProjectDir)\_HuijiExporter "D:\SteamLibrary\steamapps\common\RimWorld\Mods\_HuijiExporter" /E /I /Q /Y
+xcopy $(ProjectDir)\@HuijiExporter "D:\SteamLibrary\steamapps\common\RimWorld\Mods\@HuijiExporter" /E /I /Q /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
