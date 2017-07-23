@@ -38,7 +38,7 @@ namespace HuijiExporter.ExDefs {
                     new JProperty("resourcesFractionWhenDeconstructed", curDef.resourcesFractionWhenDeconstructed),
                     new JProperty("texture", TextureUtility.PathToFile(curDef.texturePath)),
                     new JProperty("layerable", curDef.layerable),
-                    new JProperty("color", curDef.color == Color.white ? null : (new ColorRGB(curDef.color.r, curDef.color.g, curDef.color.b)).ToStringHex()),
+                    new JProperty("color", curDef.color.ToStringHexExceptWhite()),
                     new JProperty("driesTo", curDef.driesTo?.label)
 
                 );

@@ -55,6 +55,7 @@
     <Compile Include="ExDefs\Ex_TerrainDef.cs" />
     <Compile Include="ExDefs\Ex_WeatherDef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ColorExtension.cs" />
     <Compile Include="Utility\ColorHSL.cs" />
     <Compile Include="Utility\ColorRGB.cs" />
     <Compile Include="Utility\RainbowUtility.cs" />
