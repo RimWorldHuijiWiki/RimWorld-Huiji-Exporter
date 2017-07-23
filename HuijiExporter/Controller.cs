@@ -25,7 +25,7 @@ namespace HuijiExporter {
             }
             foreach (Type t_SubEx in typeof(ExDefs.Ex_Def).AllSubclasses()) {
                 var curSubEx = t_SubEx.Assembly.CreateInstance(t_SubEx.FullName) as ExDefs.Ex_Def;
-                Log.Message($"{Identifier} Exporting {curSubEx.DefType}");
+                Log.Message($"{Identifier} {curSubEx.DefType}");
                 curSubEx.Export();
             }
 

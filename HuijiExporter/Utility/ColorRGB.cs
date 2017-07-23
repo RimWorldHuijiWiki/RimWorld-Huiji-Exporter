@@ -93,7 +93,7 @@ namespace HuijiExporter.Utility {
             return string.Format("#{0:X2}{1:X2}{2:X2}",
                 Convert.ToInt32(red * 255.0),
                 Convert.ToInt32(green * 255.0),
-                Convert.ToInt32(blue * 255.0));
+                Convert.ToInt32(blue * 255.0)).ToLower();
         }
 
         public ColorHSL ToColorHSL() {
