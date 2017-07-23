@@ -57,33 +57,45 @@ namespace HuijiExporter.ExDefs {
 
         #region Methods
 
-        static JObject GetAnimalWeights(BiomeDef biome) {
-            JObject obj = new JObject();
+        static IEnumerable<JObject> GetAnimalWeights(BiomeDef biome) {
+            List<JObject> result = new List<JObject>();
             foreach (PawnKindDef curAnimal in biome.AllWildAnimals) {
-                obj.Add(new JProperty(curAnimal.label, biome.CommonalityOfAnimal(curAnimal) / curAnimal.wildSpawn_GroupSizeRange.Average));
+                result.Add(new JObject(
+                    new JProperty("defName", curAnimal.defName),
+                    new JProperty("name", curAnimal.label),
+                    new JProperty("value", biome.CommonalityOfAnimal(curAnimal) / curAnimal.wildSpawn_GroupSizeRange.Average)
+                ));
             }
-            return obj;
+            return result.Count > 0 ? result : null;
         }
 
-        static JObject GetPlantWeights(BiomeDef biome) {
-            JObject obj = new JObject();
+        static IEnumerable<JObject> GetPlantWeights(BiomeDef biome) {
+            List<JObject> result = new List<JObject>();
             foreach (ThingDef curPlant in biome.AllWildPlants) {
-                obj.Add(new JProperty(curPlant.label, biome.CommonalityOfPlant(curPlant)));
+                result.Add(new JObject(
+                    new JProperty("defName", curPlant.defName),
+                    new JProperty("name", curPlant.label),
+                    new JProperty("value", biome.CommonalityOfPlant(curPlant))
+                ));
             }
-            return obj;
+            return result.Count > 0 ? result : null;
         }
 
-        static JObject GetDiseaseWeights(BiomeDef biome) {
-            JObject obj = new JObject();
+        static IEnumerable<JObject> GetDiseaseWeights(BiomeDef biome) {
+            List<JObject> result = new List<JObject>();
             foreach (IncidentDef curDisease in from inc in DefDatabase<IncidentDef>.AllDefs
                                                where inc.diseaseIncident != null
                                                select inc) {
                 float commonality = biome.CommonalityOfDisease(curDisease);
                 if (commonality > 0) {
-                    obj.Add(new JProperty(curDisease.diseaseIncident.label, commonality));
+                    result.Add(new JObject(
+                    new JProperty("defName", curDisease.diseaseIncident.defName),
+                    new JProperty("name", curDisease.diseaseIncident.label),
+                    new JProperty("value", commonality)
+                    ));
                 }
             }
-            return obj;
+            return result.Count > 0 ? result : null;
         }
 
         #endregion
