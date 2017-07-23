@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuijiExporter", "HuijiExporter\HuijiExporter.csproj", "{D1D1031B-9B5B-4AFB-901D-866935D95CFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{4428C4EB-C06E-40AD-AD37-394024A35082}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D1D1031B-9B5B-4AFB-901D-866935D95CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1D1031B-9B5B-4AFB-901D-866935D95CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1D1031B-9B5B-4AFB-901D-866935D95CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4428C4EB-C06E-40AD-AD37-394024A35082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4428C4EB-C06E-40AD-AD37-394024A35082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4428C4EB-C06E-40AD-AD37-394024A35082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4428C4EB-C06E-40AD-AD37-394024A35082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

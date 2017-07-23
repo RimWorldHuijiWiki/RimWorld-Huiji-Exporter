@@ -28,6 +28,13 @@ namespace HuijiExporter {
                 Log.Message($"{Identifier} Exporting {curSubEx.DefType}");
                 curSubEx.Export();
             }
+
+            // Debug
+            // Test();
+        }
+
+        static void Test() {
+            Utility.RainbowUtility.RainbowHexDemo();
         }
     }
 }
