@@ -90,7 +90,7 @@ namespace HuijiExporter.ExDefs {
 
         #region ECharts Data Generators
 
-        static JObject GenerateMap() {
+        protected JObject GenerateMap() {
             List<BiomeDef> allBiomes = DefDatabase<BiomeDef>.AllDefsListForReading;
             // { AridShrubland, Desert, ExtremeDesert, BorealForest, Tundra, IceSheet, SeaIce, TemperateForest, TropicalRainforest, Ocean, Lake }
             // { "#896647", "#9a7a56", "#9e815f", "#64522e", "#836a59", "#a09fa0", "#939394", "#766c39", "#656633", "#3c475c", "#3c475c"}
@@ -153,7 +153,7 @@ namespace HuijiExporter.ExDefs {
             );
         }
 
-        static JObject GenerateCompare() {
+        protected override JObject GenerateCompare() {
             List<BiomeDef> allBiomes = DefDatabase<BiomeDef>.AllDefsListForReading;
             List<string> x1_data = new List<string>();
             List<float> animalDensity_data = new List<float>();

@@ -35,11 +35,24 @@ namespace HuijiExporter.ExDefs {
             using (StreamWriter sw = new StreamWriter(Path.Combine(Controller.Path_Defs, $"{this.DefType}.json"))) {
                 JObject collection = new JObject(
                     new JProperty("collection", this.DefType),
-                    new JProperty("allDefs", allDefs)
+                    new JProperty("allDefs", allDefs),
+                    new JProperty("charts",
+                        new JObject(
+                            new JProperty("compare", GenerateCompare())
+                        )
+                    )
                 );
                 sw.Write(collection.ToString());
             }
             Log.Error($"{Controller.Identifier} The class '{GetType().Name}' does not realized method '{System.Reflection.MethodBase.GetCurrentMethod().Name}()'.");
         }
+
+        #region ECharts Data Generators
+
+        protected virtual JObject GenerateCompare() {
+            return new JObject();
+        }
+
+        #endregion
     }
 }
