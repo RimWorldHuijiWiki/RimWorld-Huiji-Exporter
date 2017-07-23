@@ -7,6 +7,7 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
+using HuijiExporter.Utility;
 
 namespace HuijiExporter.ExDefs {
     class Ex_Def {

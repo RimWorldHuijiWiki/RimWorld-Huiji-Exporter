@@ -167,6 +167,7 @@ namespace HuijiExporter.ExDefs {
             }
 
             return new JObject(
+                new JProperty("color", RainbowUtility.RainbowHex(4)),
                 new JProperty("xAxis", new JArray(new JObject(new JProperty("data", x1_data)))),
                 new JProperty("series", new JArray(
                     new JObject(new JProperty("data", animalDensity_data)),
