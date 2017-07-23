@@ -53,6 +53,9 @@
     <Compile Include="ExDefs\Ex_BiomeDef.cs" />
     <Compile Include="ExDefs\Ex_Def.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ColorHSL.cs" />
+    <Compile Include="Utility\ColorRGB.cs" />
+    <Compile Include="Utility\RainbowUtility.cs" />
     <Compile Include="Utility\TextureUtility.cs" />
   </ItemGroup>
   <ItemGroup>
