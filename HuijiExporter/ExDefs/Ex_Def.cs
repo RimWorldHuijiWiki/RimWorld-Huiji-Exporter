@@ -61,7 +61,7 @@ namespace HuijiExporter.ExDefs {
         #region ECharts Data Generators
 
         /// <summary>
-        /// Generate the data for ECharts。
+        /// Generate the data for ECharts.
         /// 生成用于 ECharts 的数据。
         /// </summary>
         /// <returns></returns>
