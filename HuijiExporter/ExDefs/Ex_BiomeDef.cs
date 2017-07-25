@@ -102,6 +102,11 @@ namespace HuijiExporter.ExDefs {
 
         #region ECharts Data Generators
 
+        /// <summary>
+        /// Distribution map of all biomes.
+        /// 所有生态区的平均温度与降雨量分布图。
+        /// </summary>
+        /// <returns></returns>
         protected JObject GenerateMap() {
             List<BiomeDef> allBiomes = DefDatabase<BiomeDef>.AllDefsListForReading;
             // { AridShrubland, Desert, ExtremeDesert, BorealForest, Tundra, IceSheet, SeaIce, TemperateForest, TropicalRainforest, Ocean, Lake }
@@ -165,6 +170,11 @@ namespace HuijiExporter.ExDefs {
             );
         }
 
+        /// <summary>
+        /// Comparison for all biomes.
+        /// 所有生态区的对比。
+        /// </summary>
+        /// <returns></returns>
         protected override JObject GenerateCompare() {
             List<BiomeDef> allBiomes = DefDatabase<BiomeDef>.AllDefsListForReading;
             List<string> x1_data = new List<string>();

@@ -51,6 +51,11 @@ namespace HuijiExporter.ExDefs {
 
         #region ECharts Data Generators
 
+        /// <summary>
+        ///  Comparison for all weathers.
+        ///  所有天气的对比。
+        /// </summary>
+        /// <returns></returns>
         protected override JObject GenerateCompare() {
             List<WeatherDef> allWeather = DefDatabase<WeatherDef>.AllDefsListForReading;
             List<string> x1_data = new List<string>();
@@ -58,10 +63,10 @@ namespace HuijiExporter.ExDefs {
             List<float> moveSpeedMultiplier_data = new List<float>();
             List<float> accuracyMultiplier_data = new List<float>();
             foreach (WeatherDef curWeather in allWeather) {
-                x1_data.Add(curWeather.label);
-                windSpeedFactor_data.Add(curWeather.windSpeedFactor);
-                moveSpeedMultiplier_data.Add(curWeather.moveSpeedMultiplier);
-                accuracyMultiplier_data.Add(curWeather.accuracyMultiplier);
+                x1_data.Add(curWeather.label); // 天气名称
+                windSpeedFactor_data.Add(curWeather.windSpeedFactor); // 风速系数
+                moveSpeedMultiplier_data.Add(curWeather.moveSpeedMultiplier); // 移动速度乘数
+                accuracyMultiplier_data.Add(curWeather.accuracyMultiplier); // 射击精度乘数
             }
 
             return new JObject(

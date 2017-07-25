@@ -24,20 +24,20 @@ namespace HuijiExporter.ExDefs {
                     new JProperty("label", curDef.label),
                     new JProperty("description", curDef.description),
                     new JProperty("statBases", new JArray(
-                        GetStat(curDef, StatDefOf.MarketValue),
-                        GetStat(curDef, StatDefOf.WorkToBuild),
-                        GetStat(curDef, StatDefOf.Beauty),
-                        GetStat(curDef, StatDefOf.Cleanliness),
-                        GetStat(curDef, StatDefOf.Flammability)
+                        GetStat(curDef, StatDefOf.MarketValue), // 市场价值
+                        GetStat(curDef, StatDefOf.WorkToBuild), // 工作量（建造）
+                        GetStat(curDef, StatDefOf.Beauty), // 美观度
+                        GetStat(curDef, StatDefOf.Cleanliness), // 清洁度
+                        GetStat(curDef, StatDefOf.Flammability) // 可燃性
                     )),
-                    new JProperty("passability", curDef.passability),
+                    new JProperty("passability", curDef.passability), // 肥沃度
                     new JProperty("walkSpeed", (curDef.passability == Traversability.Impassable) ? 0f : (13f / curDef.pathCost + 13f)),
                     new JProperty("fertility", curDef.fertility),
                     new JProperty("costList", GetCostList(curDef)),
                     new JProperty("researchPrerequisites", GetResearchPrerequisites(curDef)),
                     new JProperty("resourcesFractionWhenDeconstructed", curDef.resourcesFractionWhenDeconstructed),
                     new JProperty("texture", TextureUtility.PathToFile(curDef.texturePath)),
-                    new JProperty("layerable", curDef.layerable),
+                    new JProperty("layerable", curDef.layerable), // 可否移除
                     new JProperty("color", curDef.color.ToStringHexExceptWhite()),
                     new JProperty("driesTo", curDef.driesTo?.label)
 
@@ -107,6 +107,11 @@ namespace HuijiExporter.ExDefs {
 
         #region ECharts Data Generators
 
+        /// <summary>
+        /// Comparison for all terrains.
+        /// 所有地面的对比。
+        /// </summary>
+        /// <returns></returns>
         protected override JObject GenerateCompare() {
             List<string> y1_data = new List<string>();
             List<float> MarketValue_data = new List<float>();
@@ -114,11 +119,11 @@ namespace HuijiExporter.ExDefs {
             List<float> Cleanliness_data = new List<float>();
             List<float> Beauty_data = new List<float>();
             foreach (TerrainDef curTerrain in DefDatabase<TerrainDef>.AllDefsListForReading) {
-                y1_data.Add(curTerrain.label);
-                MarketValue_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.MarketValue));
-                fertility_data.Add(curTerrain.fertility);
-                Cleanliness_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.Cleanliness));
-                Beauty_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.Beauty));
+                y1_data.Add(curTerrain.label); // 地面名称
+                MarketValue_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.MarketValue)); // 市场价值
+                fertility_data.Add(curTerrain.fertility); // 肥沃度
+                Cleanliness_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.Cleanliness)); // 清洁度
+                Beauty_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.Beauty)); // 美观度
             }
 
             return new JObject(

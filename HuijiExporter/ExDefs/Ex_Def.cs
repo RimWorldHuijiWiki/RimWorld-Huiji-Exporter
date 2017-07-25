@@ -10,11 +10,22 @@ using Newtonsoft.Json.Linq;
 using HuijiExporter.Utility;
 
 namespace HuijiExporter.ExDefs {
+    /// <summary>
+    /// Base Class
+    /// </summary>
     class Ex_Def {
+        /// <summary>
+        /// Get the name of this Def type.
+        /// 获取此 Def 类型的名称。
+        /// </summary>
         public virtual string DefType => typeof(Def).Name;
 
+        /// <summary>
+        /// Export all data of this Def type.
+        /// 导出此 Def 类型的所有数据。
+        /// </summary>
         public virtual void Export() {
-            // Instance
+            // Instance 实例
             List<JObject> allDatas = new List<JObject>();
             List<string> allDefs = new List<string>();
             foreach (Def curDef in DefDatabase<Def>.AllDefsListForReading) {
@@ -31,7 +42,7 @@ namespace HuijiExporter.ExDefs {
                     sw.Write(text);
                 }
             }
-            // Collection
+            // Collection 集合
             using (StreamWriter sw = new StreamWriter(Path.Combine(Controller.Path_Defs, $"{this.DefType}.json"))) {
                 JObject collection = new JObject(
                     new JProperty("collection", this.DefType),
@@ -49,6 +60,11 @@ namespace HuijiExporter.ExDefs {
 
         #region ECharts Data Generators
 
+        /// <summary>
+        /// Generate the data for ECharts。
+        /// 生成用于 ECharts 的数据。
+        /// </summary>
+        /// <returns></returns>
         protected virtual JObject GenerateCompare() {
             return new JObject();
         }
