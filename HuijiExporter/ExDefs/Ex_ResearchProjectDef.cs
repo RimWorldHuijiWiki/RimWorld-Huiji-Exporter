@@ -144,7 +144,15 @@ namespace HuijiExporter.ExDefs {
                 sb.Append(("解锁建筑：" + string.Join("、", unlockBuildings.ToArray())).Wrap());
                 sb.Append("<br/>");
             }
-            
+
+            var unlockPlant = from plt in DefDatabase<ThingDef>.AllDefs
+                              where plt.category == ThingCategory.Plant && plt.plant.sowResearchPrerequisites != null && plt.plant.sowResearchPrerequisites.Contains(research)
+                              select plt.label;
+            if (unlockPlant.Count() > 0) {
+                sb.Append(("解锁植物：" + string.Join("、", unlockPlant.ToArray())).Wrap());
+                sb.Append("<br/>");
+            }
+
             var unlockTerrains = from trn in DefDatabase<TerrainDef>.AllDefs
                                  where trn.researchPrerequisites != null && trn.researchPrerequisites.Contains(research)
                                  select trn.label;
