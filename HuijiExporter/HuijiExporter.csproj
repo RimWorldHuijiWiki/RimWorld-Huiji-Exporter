@@ -52,6 +52,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="ExDefs\Ex_BiomeDef.cs" />
     <Compile Include="ExDefs\Ex_Def.cs" />
+    <Compile Include="ExDefs\Ex_ResearchProjectDef.cs" />
     <Compile Include="ExDefs\Ex_SkillDef.cs" />
     <Compile Include="ExDefs\Ex_TerrainDef.cs" />
     <Compile Include="ExDefs\Ex_WeatherDef.cs" />
