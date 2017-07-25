@@ -9,7 +9,9 @@ namespace HuijiExporter.Utility {
             if (string.IsNullOrEmpty(text) || text.Length <= length) {
                 return text;
             }
-            return string.Join("<br/>", text.SplitByLength(length));
+            return string.Join("<br/>", (from rl in text.Split('\n')
+                                         from pl in rl.SplitByLength(length)
+                                         select pl).ToArray());
         }
 
         public static string[] SplitByLength(this string text, int length = 30) {
