@@ -57,45 +57,63 @@ namespace HuijiExporter.ExDefs {
 
         #region Methods
 
-        static IEnumerable<JObject> GetAnimalWeights(BiomeDef biome) {
-            List<JObject> result = new List<JObject>();
+        static JObject GetAnimalWeights(BiomeDef biome) {
+            List<JObject> s1_data = new List<JObject>();
             foreach (PawnKindDef curAnimal in biome.AllWildAnimals) {
-                result.Add(new JObject(
+                s1_data.Add(new JObject(
                     new JProperty("defName", curAnimal.defName),
                     new JProperty("name", curAnimal.label),
                     new JProperty("value", biome.CommonalityOfAnimal(curAnimal) / curAnimal.wildSpawn_GroupSizeRange.Average)
                 ));
             }
-            return result.Count > 0 ? result : null;
+            if (s1_data.Count > 0) {
+                return new JObject(
+                    new JProperty("s1_data", s1_data),
+                    new JProperty("color", RainbowUtility.RainbowHex(s1_data.Count))
+                );
+            }
+            return null;
         }
 
-        static IEnumerable<JObject> GetPlantWeights(BiomeDef biome) {
-            List<JObject> result = new List<JObject>();
+        static JObject GetPlantWeights(BiomeDef biome) {
+            List<JObject> s1_data = new List<JObject>();
             foreach (ThingDef curPlant in biome.AllWildPlants) {
-                result.Add(new JObject(
+                s1_data.Add(new JObject(
                     new JProperty("defName", curPlant.defName),
                     new JProperty("name", curPlant.label),
                     new JProperty("value", biome.CommonalityOfPlant(curPlant))
                 ));
             }
-            return result.Count > 0 ? result : null;
+            if (s1_data.Count > 0) {
+                return new JObject(
+                    new JProperty("s1_data", s1_data),
+                    new JProperty("color", RainbowUtility.RainbowHex(s1_data.Count))
+                );
+            }
+            return null;
         }
 
-        static IEnumerable<JObject> GetDiseaseWeights(BiomeDef biome) {
-            List<JObject> result = new List<JObject>();
+        static JObject GetDiseaseWeights(BiomeDef biome) {
+            List<JObject> s1_data = new List<JObject>();
             foreach (IncidentDef curDisease in from inc in DefDatabase<IncidentDef>.AllDefs
                                                where inc.diseaseIncident != null
                                                select inc) {
                 float commonality = biome.CommonalityOfDisease(curDisease);
                 if (commonality > 0) {
-                    result.Add(new JObject(
+                    s1_data.Add(new JObject(
                     new JProperty("defName", curDisease.diseaseIncident.defName),
                     new JProperty("name", curDisease.diseaseIncident.label),
                     new JProperty("value", commonality)
                     ));
                 }
             }
-            return result.Count > 0 ? result : null;
+            if (s1_data.Count > 0) {
+                return new JObject(
+                    new JProperty("s1_data", s1_data),
+                    new JProperty("color", RainbowUtility.RainbowHex(s1_data.Count))
+                );
+            }
+            return null;
         }
 
         #endregion
