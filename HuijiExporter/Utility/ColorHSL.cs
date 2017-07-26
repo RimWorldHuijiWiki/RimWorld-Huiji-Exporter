@@ -54,6 +54,14 @@ namespace HuijiExporter.Utility {
             get { return Convert.ToInt32(hue * 360.0); }
             set { hue = Cycle01((int)value / 360.0); }
         }
+        public int SaturationPercent {
+            get { return Convert.ToInt32(saturation * 100.0); }
+            set { saturation = Clamp01((double)value / 100.0); }
+        }
+        public int LightnessPercent {
+            get { return Convert.ToInt32(lightness * 100.0); }
+            set { lightness = Clamp01((double)value / 100.0); }
+        }
 
         #endregion
 

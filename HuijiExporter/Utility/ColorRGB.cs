@@ -36,7 +36,7 @@ namespace HuijiExporter.Utility {
             if (htmlHex.Length != 3 && htmlHex.Length != 6)
                 throw new ArgumentException($"The htmlHex '#{htmlHex}' is invalid.");
             if (htmlHex.Length == 3)
-                htmlHex = string.Format("{0}{1}{2}", htmlHex.Substring(0, 1), htmlHex.Substring(1, 1), htmlHex.Substring(2, 1));
+                htmlHex = string.Format("{0}{0}{1}{1}{2}{2}", htmlHex.Substring(0, 1), htmlHex.Substring(1, 1), htmlHex.Substring(2, 1));
             int red = int.Parse(htmlHex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
             int green = int.Parse(htmlHex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
             int blue = int.Parse(htmlHex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
