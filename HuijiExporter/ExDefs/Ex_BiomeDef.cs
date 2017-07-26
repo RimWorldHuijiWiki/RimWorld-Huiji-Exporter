@@ -58,59 +58,59 @@ namespace HuijiExporter.ExDefs {
         #region Methods
 
         static JObject GetAnimalWeights(BiomeDef biome) {
-            List<JObject> s1_data = new List<JObject>();
+            List<JObject> s0_data = new List<JObject>();
             foreach (PawnKindDef curAnimal in biome.AllWildAnimals) {
-                s1_data.Add(new JObject(
+                s0_data.Add(new JObject(
                     new JProperty("defName", curAnimal.defName),
                     new JProperty("name", curAnimal.label),
                     new JProperty("value", biome.CommonalityOfAnimal(curAnimal) / curAnimal.wildSpawn_GroupSizeRange.Average)
                 ));
             }
-            if (s1_data.Count > 0) {
+            if (s0_data.Count > 0) {
                 return new JObject(
-                    new JProperty("s1_data", s1_data),
-                    new JProperty("color", RainbowUtility.RainbowHex(s1_data.Count))
+                    new JProperty("color", RainbowUtility.RainbowHex(s0_data.Count)),
+                    new JProperty("series", new JArray(new JObject(new JProperty("data", s0_data))))
                 );
             }
             return null;
         }
 
         static JObject GetPlantWeights(BiomeDef biome) {
-            List<JObject> s1_data = new List<JObject>();
+            List<JObject> s0_data = new List<JObject>();
             foreach (ThingDef curPlant in biome.AllWildPlants) {
-                s1_data.Add(new JObject(
+                s0_data.Add(new JObject(
                     new JProperty("defName", curPlant.defName),
                     new JProperty("name", curPlant.label),
                     new JProperty("value", biome.CommonalityOfPlant(curPlant))
                 ));
             }
-            if (s1_data.Count > 0) {
+            if (s0_data.Count > 0) {
                 return new JObject(
-                    new JProperty("s1_data", s1_data),
-                    new JProperty("color", RainbowUtility.RainbowHex(s1_data.Count))
+                    new JProperty("color", RainbowUtility.RainbowHex(s0_data.Count)),
+                    new JProperty("series", new JArray(new JObject(new JProperty("data", s0_data))))
                 );
             }
             return null;
         }
 
         static JObject GetDiseaseWeights(BiomeDef biome) {
-            List<JObject> s1_data = new List<JObject>();
+            List<JObject> s0_data = new List<JObject>();
             foreach (IncidentDef curDisease in from inc in DefDatabase<IncidentDef>.AllDefs
                                                where inc.diseaseIncident != null
                                                select inc) {
                 float commonality = biome.CommonalityOfDisease(curDisease);
                 if (commonality > 0) {
-                    s1_data.Add(new JObject(
+                    s0_data.Add(new JObject(
                     new JProperty("defName", curDisease.diseaseIncident.defName),
                     new JProperty("name", curDisease.diseaseIncident.label),
                     new JProperty("value", commonality)
                     ));
                 }
             }
-            if (s1_data.Count > 0) {
+            if (s0_data.Count > 0) {
                 return new JObject(
-                    new JProperty("s1_data", s1_data),
-                    new JProperty("color", RainbowUtility.RainbowHex(s1_data.Count))
+                    new JProperty("color", RainbowUtility.RainbowHex(s0_data.Count)),
+                    new JProperty("series", new JArray(new JObject(new JProperty("data", s0_data))))
                 );
             }
             return null;
@@ -150,19 +150,19 @@ namespace HuijiExporter.ExDefs {
                     new JProperty("color", colors[allBiomes[i]])
                 ));
             }
-            List<float> x1_data = new List<float>();
+            List<float> x0_data = new List<float>();
             for (int temperature = -40; temperature < 60; temperature++) {
-                x1_data.Add(temperature);
+                x0_data.Add(temperature);
             }
-            List<float> y1_data = new List<float>();
+            List<float> y0_data = new List<float>();
             for (int rainfall = 0; rainfall < 4000; rainfall += 40) {
-                y1_data.Add(rainfall);
+                y0_data.Add(rainfall);
             }
-            List<JArray> s1_data = new List<JArray>();
+            List<JArray> s0_data = new List<JArray>();
             Tile ws = new Tile() { elevation = 1f };
-            foreach (float temperature in x1_data) {
+            foreach (float temperature in x0_data) {
                 ws.temperature = temperature;
-                foreach (float rainfall in y1_data) {
+                foreach (float rainfall in y0_data) {
                     ws.rainfall = rainfall;
                     BiomeDef biomeDef = null;
                     float num = 0f;
@@ -176,15 +176,15 @@ namespace HuijiExporter.ExDefs {
                             }
                         }
                     }
-                    s1_data.Add(new JArray(x1_data.IndexOf(temperature), y1_data.IndexOf(rainfall), allBiomes.IndexOf(biomeDef)));
+                    s0_data.Add(new JArray(x0_data.IndexOf(temperature), y0_data.IndexOf(rainfall), allBiomes.IndexOf(biomeDef)));
                 }
             }
 
             return new JObject(
                 new JProperty("visualMap", new JObject(new JProperty("pieces", visualMap_pieces))),
-                new JProperty("xAxis", new JArray(new JObject(new JProperty("data", x1_data)))),
-                new JProperty("yAxis", new JArray(new JObject(new JProperty("data", y1_data)))),
-                new JProperty("series", new JArray(new JObject(new JProperty("data", s1_data))))
+                new JProperty("xAxis", new JArray(new JObject(new JProperty("data", x0_data)))),
+                new JProperty("yAxis", new JArray(new JObject(new JProperty("data", y0_data)))),
+                new JProperty("series", new JArray(new JObject(new JProperty("data", s0_data))))
             );
         }
 
@@ -195,12 +195,12 @@ namespace HuijiExporter.ExDefs {
         /// <returns></returns>
         protected override JObject GenerateCompare() {
             List<BiomeDef> allBiomes = DefDatabase<BiomeDef>.AllDefsListForReading;
-            List<string> x1_data = new List<string>();
+            List<string> x0_data = new List<string>();
             List<float> animalDensity_data = new List<float>();
             List<float> plantDensity_data = new List<float>();
             List<float> diseaseMtbDays_data = new List<float>();
             foreach (BiomeDef curBiome in allBiomes) {
-                x1_data.Add(curBiome.label);
+                x0_data.Add(curBiome.label);
                 animalDensity_data.Add(curBiome.animalDensity);
                 plantDensity_data.Add(curBiome.plantDensity);
                 diseaseMtbDays_data.Add(curBiome.diseaseMtbDays);
@@ -208,7 +208,7 @@ namespace HuijiExporter.ExDefs {
 
             return new JObject(
                 new JProperty("color", RainbowUtility.RainbowHex(4)),
-                new JProperty("xAxis", new JArray(new JObject(new JProperty("data", x1_data)))),
+                new JProperty("xAxis", new JArray(new JObject(new JProperty("data", x0_data)))),
                 new JProperty("series", new JArray(
                     new JObject(new JProperty("data", animalDensity_data)),
                     new JObject(new JProperty("data", plantDensity_data)),

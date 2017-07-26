@@ -58,12 +58,12 @@ namespace HuijiExporter.ExDefs {
         /// <returns></returns>
         protected override JObject GenerateCompare() {
             List<WeatherDef> allWeather = DefDatabase<WeatherDef>.AllDefsListForReading;
-            List<string> x1_data = new List<string>();
+            List<string> x0_data = new List<string>();
             List<float> windSpeedFactor_data = new List<float>();
             List<float> moveSpeedMultiplier_data = new List<float>();
             List<float> accuracyMultiplier_data = new List<float>();
             foreach (WeatherDef curWeather in allWeather) {
-                x1_data.Add(curWeather.label); // 天气名称
+                x0_data.Add(curWeather.label); // 天气名称
                 windSpeedFactor_data.Add(curWeather.windSpeedFactor); // 风速系数
                 moveSpeedMultiplier_data.Add(curWeather.moveSpeedMultiplier); // 移动速度乘数
                 accuracyMultiplier_data.Add(curWeather.accuracyMultiplier); // 射击精度乘数
@@ -71,7 +71,7 @@ namespace HuijiExporter.ExDefs {
 
             return new JObject(
                 new JProperty("color", RainbowUtility.RainbowHex(4)),
-                new JProperty("xAxis", new JArray(new JObject(new JProperty("data", x1_data)))),
+                new JProperty("xAxis", new JArray(new JObject(new JProperty("data", x0_data)))),
                 new JProperty("series", new JArray(
                     new JObject(new JProperty("data", windSpeedFactor_data)),
                     new JObject(new JProperty("data", moveSpeedMultiplier_data)),

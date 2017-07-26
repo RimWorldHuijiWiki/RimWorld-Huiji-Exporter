@@ -113,13 +113,13 @@ namespace HuijiExporter.ExDefs {
         /// </summary>
         /// <returns></returns>
         protected override JObject GenerateCompare() {
-            List<string> y1_data = new List<string>();
+            List<string> y0_data = new List<string>();
             List<float> MarketValue_data = new List<float>();
             List<float> fertility_data = new List<float>();
             List<float> Cleanliness_data = new List<float>();
             List<float> Beauty_data = new List<float>();
             foreach (TerrainDef curTerrain in DefDatabase<TerrainDef>.AllDefsListForReading) {
-                y1_data.Add(curTerrain.label); // 地面名称
+                y0_data.Add(curTerrain.label); // 地面名称
                 MarketValue_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.MarketValue)); // 市场价值
                 fertility_data.Add(curTerrain.fertility); // 肥沃度
                 Cleanliness_data.Add(curTerrain.GetStatValueAbstract(StatDefOf.Cleanliness)); // 清洁度
@@ -128,7 +128,7 @@ namespace HuijiExporter.ExDefs {
 
             return new JObject(
                 new JProperty("color", RainbowUtility.RainbowHex(4)),
-                new JProperty("yAxis", new JArray(new JObject(new JProperty("data", y1_data)))),
+                new JProperty("yAxis", new JArray(new JObject(new JProperty("data", y0_data)))),
                 new JProperty("series", new JArray(
                     new JObject(
                         new JProperty("name", StatDefOf.MarketValue.label),

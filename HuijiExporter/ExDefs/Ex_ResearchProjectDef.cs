@@ -217,10 +217,10 @@ namespace HuijiExporter.ExDefs {
         /// </summary>
         /// <returns></returns>
         protected JObject GenerateGraph() {
-            List<JObject> s1_data = new List<JObject>();
-            List<JObject> s1_links = new List<JObject>();
+            List<JObject> s0_data = new List<JObject>();
+            List<JObject> s0_links = new List<JObject>();
             foreach (ResearchProjectDef curResearch in DefDatabase<ResearchProjectDef>.AllDefsListForReading) {
-                s1_data.Add(new JObject(
+                s0_data.Add(new JObject(
                     new JProperty("defName", curResearch.defName),
                     new JProperty("name", curResearch.label),
                     new JProperty("x", curResearch.researchViewX),
@@ -231,7 +231,7 @@ namespace HuijiExporter.ExDefs {
                 ));
                 if (curResearch.prerequisites != null) {
                     foreach (ResearchProjectDef curPre in curResearch.prerequisites) {
-                        s1_links.Add(new JObject(
+                        s0_links.Add(new JObject(
                             new JProperty("source", curPre.label),
                             new JProperty("target", curResearch.label)
                         ));
@@ -241,8 +241,8 @@ namespace HuijiExporter.ExDefs {
 
             return new JObject(
                 new JProperty("series", new JArray(new JObject(
-                    new JProperty("data", s1_data),
-                    new JProperty("links", s1_links)
+                    new JProperty("data", s0_data),
+                    new JProperty("links", s0_links)
                 )))
             );
         }
