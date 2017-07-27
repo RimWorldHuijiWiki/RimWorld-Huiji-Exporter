@@ -151,19 +151,19 @@ namespace HuijiExporter.ExDefs {
                 ));
             }
             List<float> x0_data = new List<float>();
-            for (int temperature = -40; temperature < 60; temperature++) {
-                x0_data.Add(temperature);
+            for (int rainfall = 0; rainfall < 4000; rainfall += 40) {
+                x0_data.Add(rainfall);
             }
             List<float> y0_data = new List<float>();
-            for (int rainfall = 0; rainfall < 4000; rainfall += 40) {
-                y0_data.Add(rainfall);
+            for (int temperature = -40; temperature < 60; temperature++) {
+                y0_data.Add(temperature);
             }
             List<JArray> s0_data = new List<JArray>();
             Tile ws = new Tile() { elevation = 1f };
-            foreach (float temperature in x0_data) {
-                ws.temperature = temperature;
-                foreach (float rainfall in y0_data) {
-                    ws.rainfall = rainfall;
+            foreach (float rainfall in x0_data) {
+                ws.rainfall = rainfall;
+                foreach (float temperature in y0_data) {
+                    ws.temperature = temperature;
                     BiomeDef biomeDef = null;
                     float num = 0f;
                     for (int i = 0; i < allBiomes.Count; i++) {
@@ -176,7 +176,7 @@ namespace HuijiExporter.ExDefs {
                             }
                         }
                     }
-                    s0_data.Add(new JArray(x0_data.IndexOf(temperature), y0_data.IndexOf(rainfall), allBiomes.IndexOf(biomeDef)));
+                    s0_data.Add(new JArray(x0_data.IndexOf(rainfall), y0_data.IndexOf(temperature), allBiomes.IndexOf(biomeDef)));
                 }
             }
 
